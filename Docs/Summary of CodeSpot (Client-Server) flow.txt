@@ -1,0 +1,12 @@
+-	There are 3 important files: (1)code-editor.component.ts, (2)editor.service.ts, (3)message.service.ts
+
+-	There are 2 major changes:
+	+ Local changes (Local insert / Local remove)
+	+ Remote changes (Remote insert / Remote remove)
+	
+-	These 3 files interact with each other in the following way:
+	+ (1) receives all local AND remote changes.
+		.	For local changes: User insert / delete sth, (1) gets notified and calls (2) to update that changes to the CRDT BST. 
+				(2) then calls (3) to broadcast to everybody else
+		.	For remote changes: (1) listens to SignalR events, then calls (2) to update BST if there are any changes.
+				(2) then reflects that changes to monaco editor so user can see these changes.
